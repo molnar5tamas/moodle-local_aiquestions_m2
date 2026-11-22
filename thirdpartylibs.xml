@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<libraries>
+  <library>
+    <location>smalot_pdfparser</location>
+    <name>PdfParser</name>
+    <description>PHP library for extracting text from PDF files</description>
+    <version>X.Y.Z</version>
+    <license>LGPL</license>
+    <licenseversion>3.0</licenseversion>
+    <repository>https://github.com/smalot/pdfparser</repository>
+  </library>
+</libraries>
