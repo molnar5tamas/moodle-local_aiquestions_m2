@@ -117,64 +117,6 @@ class local_aiquestions_m2_story_form extends moodleform {
         $mform->setDefault('customprefix', '');
         $mform->addHelpButton('customprefix', 'customprefix', 'local_aiquestions_m2');
 
-        // Preset.
-        $presets = [];
-        for ($i = 0; $i < 10; $i++) {
-            if ($presetname = get_config('local_aiquestions_m2', 'presetname' . $i)) {
-                $presets[] = $presetname;
-            }
-        }
-        $mform->addElement('select', 'preset', get_string('preset', 'local_aiquestions_m2'), $presets);
-
-        // Edit preset.
-        $mform->addElement('checkbox', 'editpreset', get_string('editpreset', 'local_aiquestions_m2'));
-        $mform->addElement('html', get_string('shareyourprompts', 'local_aiquestions_m2'));
-
-        // Create elements for all presets.
-        for ($i = 0; $i < 10; $i++) {
-            $primer = $i + 1;
-
-            // Primer.
-            $mform->addElement(
-                'textarea',
-                'primer' . $i,
-                get_string('primer', 'local_aiquestions_m2'),
-                'wrap="virtual" rows="10" cols="50"'
-            );
-
-            $mform->setType('primer' . $i, PARAM_RAW);
-            $mform->setDefault('primer' . $i, get_config('local_aiquestions_m2', 'presettprimer' . $primer));
-            $mform->addHelpButton('primer' . $i, 'primer', 'local_aiquestions_m2');
-            $mform->hideif('primer' . $i, 'editpreset');
-            $mform->hideif('primer' . $i, 'preset', 'neq', $i);
-
-            // Instructions.
-            $mform->addElement(
-                'textarea',
-                'instructions' . $i,
-                get_string('instructions', 'local_aiquestions_m2'),
-                'wrap="virtual" rows="10" cols="50"'
-            );
-            $mform->setType('instructions' . $i, PARAM_RAW);
-            $mform->setDefault('instructions' . $i, get_config('local_aiquestions_m2', 'presetinstructions' . $primer));
-            $mform->addHelpButton('instructions' . $i, 'instructions', 'local_aiquestions_m2');
-            $mform->hideif('instructions' . $i, 'editpreset');
-            $mform->hideif('instructions' . $i, 'preset', 'neq', $i);
-
-            // Example.
-            $mform->addElement(
-                'textarea',
-                'example' . $i,
-                get_string('example', 'local_aiquestions_m2'),
-                'wrap="virtual" rows="10" cols="50"'
-            );
-            $mform->setType('example' . $i, PARAM_RAW);
-            $mform->setDefault('example' . $i, get_config('local_aiquestions_m2', 'presetexample' . $primer));
-            $mform->addHelpButton('example' . $i, 'example', 'local_aiquestions_m2');
-            $mform->hideif('example' . $i, 'editpreset');
-            $mform->hideif('example' . $i, 'preset', 'neq', $i);
-        }
-
         // Courseid.
         $mform->addElement('hidden', 'courseid', $courseid);
         $mform->setType('courseid', PARAM_INT);

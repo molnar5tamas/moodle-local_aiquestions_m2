@@ -95,52 +95,55 @@ if ($hassiteconfig) {
         get_string('shareyourprompts', 'local_aiquestions_m2'),
     ));
 
-    for ($i = 1; $i <= 10; $i++) {
-        // Preset header.
-        $settings->add(new admin_setting_heading(
-            'local_aiquestions_m2/preset' . $i,
-            get_string('preset', 'local_aiquestions_m2') . " $i",
-            null
-        ));
+    // Prompt parts (set by the admin only).
+    $settings->add(new admin_setting_configtextarea(
+        'local_aiquestions_m2/presettprimer1',
+        get_string('presetprimer', 'local_aiquestions_m2'),
+        get_string('primer_help', 'local_aiquestions_m2'),
+        get_string('presetprimerdefault1', 'local_aiquestions_m2'),
+        PARAM_TEXT,
+        4000
+    ));
 
-        // Preset name.
-        $settings->add(new admin_setting_configtext(
-            'local_aiquestions_m2/presetname' . $i,
-            get_string('presetname', 'local_aiquestions_m2'),
-            get_string('presetnamedesc', 'local_aiquestions_m2'),
-            get_string('presetnamedefault' . $i, 'local_aiquestions_m2'),
-        ));
+    $settings->add(new admin_setting_configtextarea(
+        'local_aiquestions_m2/presetinstructions1',
+        get_string('presetinstructions', 'local_aiquestions_m2'),
+        get_string('instructions_help', 'local_aiquestions_m2'),
+        get_string('presetinstructionsdefault1', 'local_aiquestions_m2'),
+        PARAM_RAW,
+        4000
+    ));
 
-        // Preset primer.
-        $settings->add(new admin_setting_configtextarea(
-            'local_aiquestions_m2/presettprimer' . $i,
-            get_string('presetprimer', 'local_aiquestions_m2'),
-            get_string('primer_help', 'local_aiquestions_m2'),
-            get_string('presetprimerdefault' . $i, 'local_aiquestions_m2'),
-            PARAM_TEXT,
-            4000
-        ));
+    $settings->add(new admin_setting_configtextarea(
+        'local_aiquestions_m2/presetexample1',
+        get_string('presetexample', 'local_aiquestions_m2'),
+        get_string('example_help', 'local_aiquestions_m2'),
+        get_string('presetexampledefault1', 'local_aiquestions_m2'),
+        PARAM_RAW,
+        4000
+    ));
 
-        // Preset instructions.
-        $settings->add(new admin_setting_configtextarea(
-            'local_aiquestions_m2/presetinstructions' . $i,
-            get_string('presetinstructions', 'local_aiquestions_m2'),
-            get_string('instructions_help', 'local_aiquestions_m2'),
-            get_string('presetinstructionsdefault' . $i, 'local_aiquestions_m2'),
-            PARAM_TEXT,
-            4000
-        ));
+    // Highlighted block between the example and the prompt end.
+    $settings->add(new admin_setting_description(
+        'local_aiquestions_m2/contentinfo',
+        '',
+        html_writer::div(
+            html_writer::tag('strong', get_string('contentinfo_title', 'local_aiquestions_m2')) .
+            html_writer::empty_tag('br') .
+            get_string('contentinfo', 'local_aiquestions_m2'),
+            'alert alert-info'
+        )
+    ));
 
-        // Preset example.
-        $settings->add(new admin_setting_configtextarea(
-            'local_aiquestions_m2/presetexample' . $i,
-            get_string('presetexample', 'local_aiquestions_m2'),
-            get_string('example_help', 'local_aiquestions_m2'),
-            get_string('presetexampledefault' . $i, 'local_aiquestions_m2'),
-            PARAM_TEXT,
-            4000
-        ));
-    }
+    // Text added AFTER the content.
+    $settings->add(new admin_setting_configtextarea(
+        'local_aiquestions_m2/presetpromptend1',
+        get_string('presetpromptend', 'local_aiquestions_m2'),
+        get_string('presetpromptend_desc', 'local_aiquestions_m2'),
+        get_string('presetpromptenddefault', 'local_aiquestions_m2'),
+        PARAM_RAW,
+        4000
+    ));
 
     $ADMIN->add('localplugins', $settings);
 }

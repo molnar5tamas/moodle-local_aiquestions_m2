@@ -247,14 +247,8 @@ if ($mform->is_cancelled()) {
     $task = new \local_aiquestions_m2\task\questions();
     if ($task) {
         $uniqid = uniqid($USER->id, true);
-        $preset = $data->preset;
-        $primer = 'primer' . $preset;
-        $instructions = 'instructions' . $preset;
-        $example = 'example' . $preset;
+
         $task->set_custom_data(['category' => $data->category ?? '',
-                                'primer' => $data->$primer,
-                                'instructions' => $data->$instructions,
-                                'example' => $data->$example,
                                 'story' => $storytext, // Merged textarea + uploaded file + course PDF.
                                 'numofquestions' => $data->numofquestions,
                                 'addidentifier' => $data->addidentifier,

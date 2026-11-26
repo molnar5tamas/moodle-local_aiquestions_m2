@@ -34,6 +34,8 @@ $string['azureapiendpointdesc'] = 'Enter the Azure API endpoint URL here';
 $string['backtocourse'] = 'Back to course';
 $string['category'] = 'Question category';
 $string['category_help'] = 'If the category selection is empty, open the question bank for this course once.';
+$string['contentinfo'] = 'The content entered, uploaded or selected by the user is inserted here, between the example and the prompt end.';
+$string['contentinfo_title'] = 'User content';
 $string['createdquestionssuccess'] = 'Created questions successfully';
 $string['createdquestionsuccess'] = 'Created question successfully';
 $string['createdquestionwithid'] = 'Created question with id ';
@@ -56,7 +58,6 @@ $string['generating'] = 'Generating your questions... (You can safely leave this
 $string['generationfailed'] = 'The question generation failed after {$a} tries';
 $string['generationtries'] = 'Number of tries sent to AI: <b>{$a}</b>';
 $string['gotoquestionbank'] = 'Go to question bank';
-$string['instructions'] = 'Instructions';
 $string['instructions_help'] = 'The instructions tell the AI what to do.';
 $string['model'] = 'Model';
 $string['model_desc'] = 'Language model to use. <a href="https://platform.openai.com/docs/models/">More info</a>.';
@@ -85,21 +86,26 @@ $string['pluginname_desc'] = 'This plugin allows you to automatically generate q
 $string['pluginname_help'] = 'Use this plugin from the course administration menu or the question bank.';
 $string['preset'] = 'Preset';
 $string['presetexample'] = 'Preset example';
-$string['presetexampledefault1'] = '';
-$string['presetexampledefault10'] = '';
-$string['presetexampledefault2'] = '';
-$string['presetexampledefault3'] = '';
-$string['presetexampledefault4'] = '';
-$string['presetexampledefault5'] = '';
-$string['presetexampledefault6'] = '';
-$string['presetexampledefault7'] = '';
-$string['presetexampledefault8'] = '';
-$string['presetexampledefault9'] = '';
+$string['presetexampledefault1'] = 'EXAMPLES (format only; do not reuse it):
+
+What is the capital of France? {
+~Lyon, the second-largest city in France
+=Paris, which has been the capital since the 10th century
+~Marseille, the main port city on the Mediterranean coast
+~Toulouse, the center of the French aerospace industry
+}
+
+Mi a magaságyás előnye a zöldségtermesztésben? {
+~Csökkenti a vízfogyasztást
+~Kizárja a gyomok megtelepedésének lehetőségét
+=Növeli a termés minőségét és mennyiségét
+~Csökkenti a termés mennyiségét
+}';
 $string['presetinstructions'] = 'Preset instructions';
 $string['presetinstructionsdefault1'] = 'Your task is to create multiple-choice questions in Moodle GIFT format, based only on the content provided inside the "content" tags.
 
 LANGUAGE RULES (CRITICAL)
-1. DETECT the language of the text inside the "content" tags.
+1. DETECT the language of the text inside the <content> tags.
 2. WRITE all question texts and answers in that SAME language.
 3. NEVER translate the content and NEVER switch to another language.
 
@@ -121,65 +127,20 @@ Question text {
 - Make sure only one answer is clearly correct, and the wrong answers are plausible but definitely incorrect.
 
 ESCAPING (very important):
-In question text and answers, the characters ~ = # { } : are special in GIFT. If you need to use one of them as normal text, put a backslash before it, e.g. \= \~ \# \{ \} \:
-
-OUTPUT RULES (strict):
-- Output ONLY raw GIFT text. No introduction, no closing remarks, no markdown, no code fences, no bold/italic, no numbering.
-- Separate questions with exactly ONE blank line. No other blank lines anywhere.
-
-EXAMPLES (format only; do not reuse it):
-
-What is the capital of France? {
-~Lyon, the second-largest city in France
-=Paris, which has been the capital since the 10th century
-~Marseille, the main port city on the Mediterranean coast
-~Toulouse, the center of the French aerospace industry
-}
-
-Mi a magaságyás előnye a zöldségtermesztésben? {
-~Csökkenti a vízfogyasztást
-~Kizárja a gyomok megtelepedésének lehetőségét
-=Növeli a termés minőségét és mennyiségét
-~Csökkenti a termés mennyiségét
-}
-
-Before answering, silently verify each question against the rules above (especially that there are no ::title:: tags). Output only the GIFT questions.';
-$string['presetinstructionsdefault10'] = '';
-$string['presetinstructionsdefault2'] = '';
-$string['presetinstructionsdefault3'] = '';
-$string['presetinstructionsdefault4'] = '';
-$string['presetinstructionsdefault5'] = '';
-$string['presetinstructionsdefault6'] = '';
-$string['presetinstructionsdefault7'] = '';
-$string['presetinstructionsdefault8'] = '';
-$string['presetinstructionsdefault9'] = '';
+In question text and answers, the characters ~ = # { } : are special in GIFT. If you need to use one of them as normal text, put a backslash before it, e.g. \= \~ \# \{ \} \:';
 $string['presetname'] = 'Preset name';
 $string['presetnamedefault1'] = "Multiple choice question";
-$string['presetnamedefault10'] = '';
-$string['presetnamedefault2'] = '';
-$string['presetnamedefault3'] = '';
-$string['presetnamedefault4'] = '';
-$string['presetnamedefault5'] = '';
-$string['presetnamedefault6'] = '';
-$string['presetnamedefault7'] = '';
-$string['presetnamedefault8'] = '';
-$string['presetnamedefault9'] = '';
 $string['presetnamedesc'] = 'Name that will be shown to the user';
 $string['presetprimer'] = 'Preset primer';
 $string['presetprimerdefault1'] = "You are a helpful teaching assistant that creates multiple choice questions based on the content provided below.";
-$string['presetprimerdefault10'] = '';
-$string['presetprimerdefault2'] = '';
-$string['presetprimerdefault3'] = '';
-$string['presetprimerdefault4'] = '';
-$string['presetprimerdefault5'] = '';
-$string['presetprimerdefault6'] = '';
-$string['presetprimerdefault7'] = '';
-$string['presetprimerdefault8'] = '';
-$string['presetprimerdefault9'] = '';
-$string['presets'] = 'Presets';
-$string['presetsdesc'] = 'You can specify up to 10 presets, which users will be able to select in their courses. Users will still be able to edit the presets before sending them to OpenAI.';
+$string['presetpromptend'] = 'Prompt end';
+$string['presetpromptend_desc'] = 'Text added to the prompt AFTER the content (e.g. final checks, output format and language reminders).';
+$string['presetpromptenddefault'] = 'Before answering, silently verify each question against the rules above (no ::title:: tags, exactly one correct answer (=) and three wrong answers (~), special characters escaped).
+Output ONLY the raw GIFT questions: no introduction, no explanation, no markdown, no code fences. Separate questions with exactly ONE blank line.
+LANGUAGE (highest priority): write every question and every answer in the SAME language as the text inside the <content> tags, not in the language of the examples. Do not translate.';
+$string['presets'] = 'Prompt settings';
+$string['presetsdesc'] = 'The prompt sent to the AI is built as: primer + instructions + example + content + prompt end. Only administrators can edit these parts.';
 $string['preview'] = 'Preview question in new tab';
-$string['primer'] = 'Primer';
 $string['primer_help'] = 'The primer is the first information to be sent to the AI, priming it for its task.';
 $string['privacy:metadata'] = 'AI text to questions generator does not store any personal data.';
 $string['provider'] = 'AI provider';

@@ -144,38 +144,11 @@ Mi a magaságyás előnye a zöldségtermesztésben? {
 }
 
 Before answering, silently verify each question against the rules above (especially that there are no ::title:: tags). Output only the GIFT questions.';
-$string['presetinstructionsdefault10'] = '';
-$string['presetinstructionsdefault2'] = '';
-$string['presetinstructionsdefault3'] = '';
-$string['presetinstructionsdefault4'] = '';
-$string['presetinstructionsdefault5'] = '';
-$string['presetinstructionsdefault6'] = '';
-$string['presetinstructionsdefault7'] = '';
-$string['presetinstructionsdefault8'] = '';
-$string['presetinstructionsdefault9'] = '';
 $string['presetname'] = 'Preset name';
 $string['presetnamedefault1'] = "Multiple choice question";
-$string['presetnamedefault10'] = '';
-$string['presetnamedefault2'] = '';
-$string['presetnamedefault3'] = '';
-$string['presetnamedefault4'] = '';
-$string['presetnamedefault5'] = '';
-$string['presetnamedefault6'] = '';
-$string['presetnamedefault7'] = '';
-$string['presetnamedefault8'] = '';
-$string['presetnamedefault9'] = '';
 $string['presetnamedesc'] = 'Name that will be shown to the user';
 $string['presetprimer'] = 'Preset primer';
 $string['presetprimerdefault1'] = "You are a helpful teaching assistant that creates multiple choice questions based on the content provided below.";
-$string['presetprimerdefault10'] = '';
-$string['presetprimerdefault2'] = '';
-$string['presetprimerdefault3'] = '';
-$string['presetprimerdefault4'] = '';
-$string['presetprimerdefault5'] = '';
-$string['presetprimerdefault6'] = '';
-$string['presetprimerdefault7'] = '';
-$string['presetprimerdefault8'] = '';
-$string['presetprimerdefault9'] = '';
 $string['presets'] = 'Presets';
 $string['presetsdesc'] = 'You can specify up to 10 presets, which users will be able to select in their courses. Users will still be able to edit the presets before sending them to OpenAI.';
 $string['preview'] = 'Preview question in new tab';

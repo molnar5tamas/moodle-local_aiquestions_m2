@@ -34,42 +34,24 @@ function local_aiquestions_m2_get_questions($data) {
 
     global $CFG, $USER;
 
-    // Build primer.
-    $primer = $data->primer;
-    $primer .= "Write $data->numofquestions questions.";
+    // Prompt parts set by the admin.
+    $primer = trim((string) get_config('local_aiquestions_m2', 'presettprimer1'));
+    $instructions = trim((string) get_config('local_aiquestions_m2', 'presetinstructions1'));
+    $example = trim((string) get_config('local_aiquestions_m2', 'presetexample1'));
+    $promptend = trim((string) get_config('local_aiquestions_m2', 'presetpromptend1'));
 
-    // Remove new lines and carriage returns.
-    $story = str_replace("\n", " ", $data->story);
-    $story = str_replace("\r", " ", $story);
-    $instructions = str_replace("\n", " ", $data->instructions);
-    $instructions = str_replace("\r", " ", $instructions);
-    $example = str_replace("\n", " ", $data->example);
-    $example = str_replace("\r", " ", $example);
+    // Remove new lines and carriage returns from the content.
+    $story = str_replace(["\r", "\n"], " ", $data->story);
 
-    // Build the complete prompt for Moodle's AI subsystem.
-    $prompttext = $primer . "\n\n";
-    $prompttext .= "Instructions: " . $instructions . "\n\n";
-    $prompttext .= "Format example (the language of the example does NOT matter, "
-    . "your output language is decided only by the content below):\n"
-    . $example . "\n\n";
-
-    $prompttext .= "Create " . $data->numofquestions . " questions in the GIFT format based on this provided content: <content>\n"
-    . $story . "\n</content>\n\n";
-
-    // A strict formatting guide for the model: this will result in fewer incorrect GIFT entries.
-    $prompttext .= "\n\nOUTPUT FORMAT RULES: Output ONLY the GIFT questions, no introduction, no explanation, "
-        . "no markdown and no code fences. Separate questions with exactly ONE blank line. "
-        . "Do NOT use question titles and never use the :: characters. "
-        . "Every question must have exactly ONE correct answer (=) and exactly THREE wrong answers (~). "
-        . "Do not use the characters ~ = # { } : inside the question text or answers unless they are escaped with a backslash.\n\n";
-
-    // Language rule goes LAST: models weigh the final instruction most.
-    $prompttext .= "FINAL LANGUAGE RULE (highest priority): Write every question and every answer in the "
-        . "SAME language as the text inside the <content> tags. Do not translate. "
-        . "The language of these instructions and of the format example is irrelevant.";
+    // Build the complete prompt: primer + instructions + example + content + prompt end.
+    $prompttext = $primer . ' Write ' . $data->numofquestions . " questions.\n\n";
+    $prompttext .= $instructions . "\n\n";
+    $prompttext .= $example . "\n\n";
+    $prompttext .= "<content>\n" . $story . "\n</content>\n\n";
+    $prompttext .= $promptend;
 
     // Check prompttext.
-    // FILE - file_put_contents(__DIR__ . '/prompttext.txt', $prompttext); FILE.
+    file_put_contents(__DIR__ . '/prompttext.txt', $prompttext);
 
     // Get the context - use system context if no specific context is available.
     $contextid = context_system::instance()->id;
